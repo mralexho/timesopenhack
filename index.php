@@ -76,17 +76,16 @@ if (isset($_POST['submit'])) {
     <div class="row">
       <div style="margin-top: 10%">
         <p><img src="http://a1.nyt.com/assets/homepage/20141208-103819/images/foundation/logos/nyt-logo-379x64.svg" alt="The New York Times" class="headerLogo"></p>
-        <h4>Enter an address below to view some Events</h4>
-        <form>
+        <h4>Enter an address below or share your browser location</h4>
+        <form name="submitForm" method="post" action="index.php">
           <div class="row">
             <div class="six columns">
               <label for="addressInput">Address</label>
-              <input class="u-full-width" placeholder="620 Eighth Ave" id="addressInput" type="text">
+              <input class="u-full-width" placeholder="620 Eighth Ave, New York, NY" name="addressInput" type="text">
             </div>
           </div>
-          <input class="button-primary" value="Submit" type="submit">
+          <input class="button-primary" name="submit" value="Submit" type="submit">
         </form>
-        <div id="map"></div>
       </div>
     </div>
   </div>
