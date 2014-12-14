@@ -1,3 +1,53 @@
+<?php
+
+if (isset($_POST['submit'])) {
+
+  $addressInput = !empty($_POST['addressInput']) ? $_POST['addressInput'] : NULL;
+
+  if (isset($addressInput)) {
+    require 'vendor/autoload.php';
+
+    $geocoder = new \Geocoder\Geocoder();
+    $adapter  = new \Geocoder\HttpAdapter\CurlHttpAdapter();
+
+    $geocoder->registerProviders(array(
+      new \Geocoder\Provider\GoogleMapsProvider($adapter),
+      ));
+
+    $provider = new \Geocoder\Provider\FreeGeoIpProvider($adapter);
+
+    try {
+      $geocode = $geocoder->geocode($addressInput);
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+
+  }
+
+  if (isset($geocode)) {
+
+    $param_baseurl   = 'http://api.nytimes.com/svc/events/v2/listings.sphp?';
+    $param_latitude  = $geocode->getLatitude();
+    $param_longitude = $geocode->getLongitude();
+    $param_radius    = '1000';
+    $param_limit     = '20';
+    $param_apikey    = 'd3ce9f86fec65789fe095489f2cd1a7f:15:61046211';
+    $params =
+      $param_baseurl .
+      'll=' . $param_latitude . ',' . $param_longitude .
+      '&radius=' . $param_radius .
+      '&limit=' . $param_limit .
+      '&api-key=' . $param_apikey;
+
+    $ch = curl_init( $params );
+    curl_setopt( $ch, CURLOPT_HEADER, 0);
+    $response = curl_exec( $ch );
+  }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
