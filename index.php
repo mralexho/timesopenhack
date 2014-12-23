@@ -83,7 +83,6 @@ if (isset($_POST['submit'])) {
   </nav>
     <div class="row">
       <div style="margin-top: 10%">
-        <p><img src="http://a1.nyt.com/assets/homepage/20141208-103819/images/foundation/logos/nyt-logo-379x64.svg" alt="The New York Times" class="headerLogo"></p>
         <h4>Enter an address below or share your browser location</h4>
         <form name="submitForm" method="post" action="index.php">
           <div class="row">
