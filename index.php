@@ -73,6 +73,14 @@ if (isset($_POST['submit'])) {
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
+  <nav class="navbar">
+    <div class="container">
+      <ul class="navbar-list">
+        <li class="navbar-item"><a class="navbar-link" href="#home">Home</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#about">About</a></li>
+      </ul>
+    </div>
+  </nav>
     <div class="row">
       <div style="margin-top: 10%">
         <p><img src="http://a1.nyt.com/assets/homepage/20141208-103819/images/foundation/logos/nyt-logo-379x64.svg" alt="The New York Times" class="headerLogo"></p>
