@@ -53,9 +53,9 @@ if (isset($_POST['submit'])) {
 <head>
 
   <meta charset="utf-8">
-  <title>NYTimes Events</title>
-  <meta name="description" content="A listing of nearby Events">
-  <meta name="author" content="">
+  <title>Eventr</title>
+  <meta name="description" content="A web service for listing nearby events using your location provided by the NYTimes Events API">
+  <meta name="author" content="Alex Ho">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
