@@ -67,6 +67,8 @@ if (isset($_POST['submit'])) {
 
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
+  <script type="text/javascript" src="js/custom.modernizr.min.js"></script>
+
 </head>
 <body>
 
