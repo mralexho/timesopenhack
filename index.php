@@ -60,15 +60,19 @@ if (isset($_POST['submit'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet'>
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/main.css">
-
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
   <script type="text/javascript" src="js/custom.modernizr.min.js"></script>
 
+
+  <style type="text/css">
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
 </head>
 <body>
 
@@ -97,7 +101,54 @@ if (isset($_POST['submit'])) {
         </form>
       </div>
     </div>
+    <div class="row">
+      <div id="map"></div>
+    </div>
   </div>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+  <script type="text/javascript">
+
+  function show_map(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    L.mapbox.accessToken = 'pk.eyJ1IjoibXJhbGV4aG8iLCJhIjoiZkVVWXpMdyJ9.MfTGF2viSjHQ7hrBmbFPYw';
+    var map = L.mapbox.map('map', 'mralexho.kincjfb5')
+        .setView([latitude, longitude], 15);
+
+    L.mapbox.featureLayer({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [
+          longitude,
+          latitude
+        ]
+      },
+      properties: {
+        title: 'You are here',
+        'marker-color': '#1EAEDB',
+      }
+    }).addTo(map);
+  }
+
+  function handle_error(err) {
+    if (err.code == 1) {
+      // PERMISSION_DENIED
+    } else if (err.code == 2) {
+      // POSITION_UNAVAILABLE
+    } else if (err.code == 3) {
+      // TIMEOUT
+    }
+  }
+
+  if (Modernizr.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      show_map, // success callback
+      handle_error, // error callback
+      { maximumAge: 60000 });
+  }
+  </script>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
